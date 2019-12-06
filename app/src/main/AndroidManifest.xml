@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SearchActivity"></activity>
-        <activity android:name=".AlbumActivity" />
+        <activity android:name=".SlideShowActivity" />
         <activity
             android:name=".PhotoActivity"
             android:label="@string/title_activity_photo"
