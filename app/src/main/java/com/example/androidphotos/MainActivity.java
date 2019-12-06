@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
                 adapter.notifyItemInserted(albums.size());
             }
         });
-
     }
 
     @Override

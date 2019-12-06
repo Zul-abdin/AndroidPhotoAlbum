@@ -1,6 +1,7 @@
 package com.example.androidphotos;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,11 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
             public void onClick(View v) {
                 Log.d(TAG, "onClick: "+ albums.get(position).name);
                 Toast.makeText(mContext, albums.get(position).name, Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(mContext, GalleryActivity.class);
+                intent.putExtra("photos", albums.get(position).photos);
+                mContext.startActivity(intent);
+
             }
         });
     }
