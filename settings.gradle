@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='AndroidPhotos04'
+rootProject.name='AndroidPhotos'

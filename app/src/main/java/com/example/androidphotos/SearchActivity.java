@@ -1,14 +1,14 @@
-package com.example.androidphotos04;
+package com.example.androidphotos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ShowAlbum extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.albums_list);
+        setContentView(R.layout.activity_search);
     }
 }
