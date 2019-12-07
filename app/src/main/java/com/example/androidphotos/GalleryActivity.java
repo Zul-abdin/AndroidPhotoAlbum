@@ -1,5 +1,6 @@
 package com.example.androidphotos;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.androidphotos.Model.Photo;
+import com.example.androidphotos.Model.UserData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -24,6 +26,7 @@ public class GalleryActivity extends AppCompatActivity {
     private GalleryRecyclerViewAdapter adapter = new GalleryRecyclerViewAdapter(photos, this);
 
     Intent myFileIntent;
+    Context context = this;
 
 
     @Override
@@ -47,6 +50,8 @@ public class GalleryActivity extends AppCompatActivity {
                 myFileIntent.setType("*/*");
                 startActivityForResult(myFileIntent, 1);
                 adapter.notifyItemInserted(photos.size());
+                String json = JsonHelper.listToJson(UserData.albums);
+                JsonHelper.jsonToFile(json, context);
             }
         });
     }

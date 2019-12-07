@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.androidphotos.Model.Album;
+import com.example.androidphotos.Model.UserData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
 
     private static final String TAG = "MainActivity";
 
-    private ArrayList<Album> albums = new ArrayList<>();
+    //private ArrayList<Album> albums = new ArrayList<>();
     private AlbumRecyclerViewAdapter adapter;
 
     @Override
@@ -38,11 +39,11 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
 
         String json = JsonHelper.fileToJson(this);
         if(!json.equals("")){
-            albums = JsonHelper.jsonToList(json);
+            UserData.setAlbums(JsonHelper.jsonToList(json));
         }
 
 //        albums.add(new Album("TEST"));
-        adapter = new AlbumRecyclerViewAdapter(albums, this);
+        adapter = new AlbumRecyclerViewAdapter(UserData.albums, this);
 
         initRecyclerView();
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -96,8 +97,8 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
     @Override
     public void getName(String name) {
         System.out.println(name);
-        albums.add(new Album(name));
-        String json = JsonHelper.listToJson(albums);
+        UserData.albums.add(new Album(name));
+        String json = JsonHelper.listToJson(UserData.albums);
         JsonHelper.jsonToFile(json, this);
     }
 }
