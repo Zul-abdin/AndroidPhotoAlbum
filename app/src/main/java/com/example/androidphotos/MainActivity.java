@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        String json = JsonHelper.fileToJson(this);
+        if(!json.equals("")){
+            albums = JsonHelper.jsonToList(json);
+        }
+
 //        albums.add(new Album("TEST"));
         adapter = new AlbumRecyclerViewAdapter(albums, this);
 
@@ -92,5 +97,7 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
     public void getName(String name) {
         System.out.println(name);
         albums.add(new Album(name));
+        String json = JsonHelper.listToJson(albums);
+        JsonHelper.jsonToFile(json, this);
     }
 }
