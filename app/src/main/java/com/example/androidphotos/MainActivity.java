@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
         String json = JsonHelper.fileToJson(this);
         if(!json.equals("")){
             UserData.setAlbums(JsonHelper.jsonToList(json));
+        }else {
+            UserData.setAlbums(new ArrayList<Album>());
         }
 
 //        albums.add(new Album("TEST"));

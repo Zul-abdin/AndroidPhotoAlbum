@@ -46,7 +46,7 @@ public class GalleryActivity extends AppCompatActivity {
                 Snackbar.make(view, "Added Image", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-                myFileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                myFileIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 myFileIntent.setType("*/*");
                 startActivityForResult(myFileIntent, 1);
                 adapter.notifyItemInserted(photos.size());
@@ -72,8 +72,11 @@ public class GalleryActivity extends AppCompatActivity {
     private void getIncomingIntent(){
         Log.d(TAG, "getIntent: checking for incoming intents.");
         if(getIntent().hasExtra("photos")){
+            Log.d(TAG, "getIncomingIntent: " + photos.size());
             Log.d(TAG, "getIncomingIntent: found photos");
-            photos = (ArrayList<Photo>) getIntent().getExtras().get("photos");
+            int position = (int) getIntent().getExtras().get("photos");
+            photos = UserData.albums.get(position).photos;
+            Log.d(TAG, "getIncomingIntent: " + photos.size());
         }
     }
 

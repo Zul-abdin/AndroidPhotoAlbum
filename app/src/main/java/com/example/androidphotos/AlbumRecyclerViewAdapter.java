@@ -48,7 +48,7 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
                 Toast.makeText(mContext, albums.get(position).name, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(mContext, GalleryActivity.class);
-                intent.putExtra("photos", albums.get(position).photos);
+                intent.putExtra("photos", position);
                 mContext.startActivity(intent);
 
             }
