@@ -1,5 +1,7 @@
 package com.example.androidphotos.Model;
 
+import android.net.Uri;
+
 import java.util.ArrayList;
 
 public class Album {
@@ -14,7 +16,7 @@ public class Album {
      */
     public Album(String name){
         photos = new ArrayList<>();
-        thumbnail = new Photo("");
+        thumbnail = new Photo();
         this.name = name;
     }
 

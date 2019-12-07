@@ -1,6 +1,8 @@
 package com.example.androidphotos;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.androidphotos.Model.Album;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AlbumDialogFragment.AlbumDialogListener {
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
     private static final String TAG = "MainActivity";
 
     private ArrayList<Album> albums = new ArrayList<>();
-    private AlbumRecyclerViewAdapter adapter = new AlbumRecyclerViewAdapter(albums, this);
+    private AlbumRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
         setSupportActionBar(toolbar);
 
 //        albums.add(new Album("TEST"));
+        adapter = new AlbumRecyclerViewAdapter(albums, this);
 
         initRecyclerView();
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -43,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 openDialog();
-                //adapter.notifyDataSetChanged();
-                adapter.notifyItemInserted(albums.size());
+                adapter.notifyDataSetChanged();
+                //adapter.notifyItemInserted(albums.size());
             }
         });
     }

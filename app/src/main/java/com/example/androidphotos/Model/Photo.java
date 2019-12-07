@@ -1,18 +1,20 @@
 package com.example.androidphotos.Model;
 
+import android.net.Uri;
+
 import java.util.ArrayList;
 
 public class Photo {
     private ArrayList<Tag> tags;
     public String caption;
-    private String url;
+    private Uri url;
 
     /**
      * Constructor of the Photo class.
      *
      * @param url String
      */
-    public Photo(String url){
+    public Photo(Uri url){
         tags = new ArrayList<>();
         caption = "";
         this.url = url;
@@ -31,6 +33,12 @@ public class Photo {
         }
         caption = photo.getCaption();
         url = photo.getUrl();
+    }
+
+    public Photo() {
+        tags = new ArrayList<>();
+        caption = "";
+        this.url = null;
     }
 
     /**
@@ -83,7 +91,7 @@ public class Photo {
      *
      * @return String
      */
-    public String getUrl() {
+    public Uri getUrl() {
         return url;
     }
 
@@ -92,7 +100,7 @@ public class Photo {
      *
      * @param url String
      */
-    public void setUrl(String url) {
+    public void setUrl(Uri url) {
         this.url = url;
     }
 

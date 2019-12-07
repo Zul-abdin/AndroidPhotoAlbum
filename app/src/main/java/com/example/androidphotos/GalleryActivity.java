@@ -1,6 +1,7 @@
 package com.example.androidphotos;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,7 +40,7 @@ public class GalleryActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Added Image", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
                 myFileIntent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -53,9 +54,13 @@ public class GalleryActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode == 1 && resultCode==RESULT_OK && data != null){
-            String path = data.getData().getPath();
-            Log.d(TAG, "onActivityResult: " + path);
-            photos.add(new Photo(path));
+            Uri path = data.getData();
+            Log.d(TAG, "onActivityResult: " +  data.getData());
+            Photo temp = new Photo(path);
+            temp.caption = "Temp";
+            photos.add(temp);
+            Log.d(TAG, "onActivityResult: PhotoSIZE" + photos.size());
+            adapter.notifyDataSetChanged();
         }
     }
 
