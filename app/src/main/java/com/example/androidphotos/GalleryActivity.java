@@ -24,6 +24,7 @@ public class GalleryActivity extends AppCompatActivity {
     private static final String TAG = "GalleryActivity";
     private ArrayList<Photo> photos = new ArrayList<>();
     private GalleryRecyclerViewAdapter adapter = new GalleryRecyclerViewAdapter(photos, this);
+    public static int albumPos;
 
     Intent myFileIntent;
     Context context = this;
@@ -75,7 +76,8 @@ public class GalleryActivity extends AppCompatActivity {
             Log.d(TAG, "getIncomingIntent: " + photos.size());
             Log.d(TAG, "getIncomingIntent: found photos");
             int position = (int) getIntent().getExtras().get("photos");
-            photos = UserData.albums.get(position).photos;
+            photos = UserData.albums.get(position).getPhotos();
+            albumPos = position;
             Log.d(TAG, "getIncomingIntent: " + photos.size());
         }
     }

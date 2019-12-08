@@ -2,4 +2,11 @@
     <string name="app_name">AndroidPhotos</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_photo">PhotoActivity</string>
+    <string name="enter_slideshow">Enter Slideshow</string>
+    
+    <string-array name="tagKeyList">
+        <item>person</item>
+        <item>location</item>
+    </string-array>
+    
 </resources>

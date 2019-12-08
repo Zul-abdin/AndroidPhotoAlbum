@@ -6,21 +6,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:showIn="@layout/activity_photo"
-    android:id="@+id/photoItem">
-
-    <ImageView
-        android:id="@+id/photo"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        tools:srcCompat="@tools:sample/avatars"
-        android:scaleType="fitCenter"
-        android:layout_marginBottom="100dp"/>
+    android:id="@+id/tagItem">
 
     <TextView
-        android:id="@+id/photoName"
+        android:id="@+id/tagString"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:gravity="center"/>
+
 </LinearLayout>

@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
         return super.onOptionsItemSelected(item);
     }
 
-    public void openDialog(){
+    private void openDialog(){
         AlbumDialogFragment d = new AlbumDialogFragment();
-        d.show(getSupportFragmentManager(), "EXANPLKE");
+        d.show(getSupportFragmentManager(), "EXAMPLE");
     }
 
     private void initRecyclerView(){

@@ -1,32 +1,30 @@
 package com.example.androidphotos;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.androidphotos.Model.Photo;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androidphotos.Model.UserData;
+
 public class GalleryRecyclerViewAdapter extends RecyclerView.Adapter<GalleryRecyclerViewAdapter.ViewHolder>{
 
     private static final String TAG = "GalleryRecyclerViewAdapter";
 
-    private ArrayList<Photo> photos= new ArrayList<>();
+    private ArrayList<Photo> photos = new ArrayList<>();
     private Context mContext;
 
     public GalleryRecyclerViewAdapter(ArrayList<Photo> photos, Context mContext) {
@@ -49,6 +47,20 @@ public class GalleryRecyclerViewAdapter extends RecyclerView.Adapter<GalleryRecy
         //holder.image.setImageBitmap(BitmapFactory.decodeFile(photos.get(position).getUrl()));
         //File temp = new File(photos.get(position).getUrl());
         holder.image.setImageURI(photos.get(position).getUrl());
+
+        holder.galleryParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: "+ photos.get(position).getUrl());
+                Toast.makeText(mContext, photos.get(position).getUrl().toString(), Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(mContext, PhotoActivity.class);
+                intent.putExtra("albumPos", GalleryActivity.albumPos);
+                intent.putExtra("photoPos", position);
+                mContext.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
