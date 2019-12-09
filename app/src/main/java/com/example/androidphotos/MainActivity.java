@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
 
     //private ArrayList<Album> albums = new ArrayList<>();
     private AlbumRecyclerViewAdapter adapter;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,28 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
             }
         });
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        String json = JsonHelper.listToJson(UserData.albums);
+        JsonHelper.jsonToFile(json, context);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        String json = JsonHelper.listToJson(UserData.albums);
+        JsonHelper.jsonToFile(json, context);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        String json = JsonHelper.listToJson(UserData.albums);
+        JsonHelper.jsonToFile(json, context);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

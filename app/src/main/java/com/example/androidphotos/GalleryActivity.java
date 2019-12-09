@@ -12,6 +12,7 @@ import com.example.androidphotos.Model.UserData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
@@ -58,12 +59,34 @@ public class GalleryActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        String json = JsonHelper.listToJson(UserData.albums);
+        JsonHelper.jsonToFile(json, context);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        String json = JsonHelper.listToJson(UserData.albums);
+        JsonHelper.jsonToFile(json, context);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        String json = JsonHelper.listToJson(UserData.albums);
+        JsonHelper.jsonToFile(json, context);
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode == 1 && resultCode==RESULT_OK && data != null){
             Uri path = data.getData();
             Log.d(TAG, "onActivityResult: " +  data.getData());
-            Photo temp = new Photo(path);
-            temp.caption = "Temp";
+            Photo temp = new Photo(path.toString());
+            File file = new File(path.getPath());
+            temp.caption = file.getName();
             photos.add(temp);
             Log.d(TAG, "onActivityResult: PhotoSIZE" + photos.size());
             adapter.notifyDataSetChanged();

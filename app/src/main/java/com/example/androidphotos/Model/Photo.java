@@ -7,17 +7,19 @@ import java.util.ArrayList;
 public class Photo {
     private ArrayList<Tag> tags;
     public String caption;
-    private Uri url;
+    //private Uri url;
+    private String urlString;
 
     /**
      * Constructor of the Photo class.
      *
      * @param url String
      */
-    public Photo(Uri url){
+    public Photo(String url){
         tags = new ArrayList<>();
         caption = "";
-        this.url = url;
+        //this.url = Uri.parse(url);
+        this.urlString = url;
     }
 
     /**
@@ -32,13 +34,13 @@ public class Photo {
             tags.add(t);
         }
         caption = photo.getCaption();
-        url = photo.getUrl();
+        //url = photo.getUrl();
     }
 
     public Photo() {
         tags = new ArrayList<>();
         caption = "";
-        this.url = null;
+        //this.url = null;
     }
 
     /**
@@ -92,7 +94,7 @@ public class Photo {
      * @return String
      */
     public Uri getUrl() {
-        return url;
+        return Uri.parse(urlString);
     }
 
     /**
@@ -101,7 +103,7 @@ public class Photo {
      * @param url String
      */
     public void setUrl(Uri url) {
-        this.url = url;
+        this.urlString = url.toString();
     }
 
     /**
@@ -129,7 +131,7 @@ public class Photo {
 
         Photo p = (Photo) obj;
 
-        if(this.url.equals(p.url)){
+        if(this.urlString.equals(p.urlString)){
             return true;
         }
 
