@@ -53,7 +53,8 @@ public class GalleryActivity extends AppCompatActivity {
                 myFileIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 myFileIntent.setType("*/*");
                 startActivityForResult(myFileIntent, 1);
-                adapter.notifyItemInserted(photos.size());
+                //adapter.notifyItemInserted(photos.size());
+                adapter.notifyDataSetChanged();
                 String json = JsonHelper.listToJson(UserData.albums);
                 JsonHelper.jsonToFile(json, context);
             }
