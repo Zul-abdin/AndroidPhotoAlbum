@@ -1,6 +1,5 @@
 package com.example.androidphotos;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,18 +10,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.androidphotos.Model.Tag;
-import com.example.androidphotos.Model.UserData;
-
-import java.util.ArrayList;
-import java.util.Collections;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.androidphotos.Model.Tag;
+
+import java.util.ArrayList;
 
 public class TagRecyclerViewAdapter extends RecyclerView.Adapter<TagRecyclerViewAdapter.ViewHolder>{
 

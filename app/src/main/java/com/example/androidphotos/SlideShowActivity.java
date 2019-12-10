@@ -1,12 +1,12 @@
 package com.example.androidphotos;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidphotos.Model.Album;
 import com.example.androidphotos.Model.UserData;
