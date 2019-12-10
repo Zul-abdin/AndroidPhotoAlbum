@@ -26,8 +26,8 @@ public class GalleryActivity extends AppCompatActivity {
 
     private static final String TAG = "GalleryActivity";
     private ArrayList<Photo> photos = new ArrayList<>();
-    private GalleryRecyclerViewAdapter adapter = new GalleryRecyclerViewAdapter(photos, this);
-    public static int albumPos;
+    public int albumPos;
+    private GalleryRecyclerViewAdapter adapter;
 
     Intent myFileIntent;
     Context context = this;
@@ -39,7 +39,7 @@ public class GalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gallery);
         Log.d(TAG, "onCreate: started.");
         getIncomingIntent();
-        adapter = new GalleryRecyclerViewAdapter(photos, this);
+        adapter = new GalleryRecyclerViewAdapter(photos, albumPos, this);
         initRecyclerView();
 
 

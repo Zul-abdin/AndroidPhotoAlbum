@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
     private static final String TAG = "MainActivity";
 
     //private ArrayList<Album> albums = new ArrayList<>();
-    private AlbumRecyclerViewAdapter adapter;
+    public AlbumRecyclerViewAdapter adapter;
     private Context context = this;
 
     @Override
@@ -62,6 +62,12 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
                 //adapter.notifyItemInserted(albums.size());
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.notifyDataSetChanged();
     }
 
     @Override

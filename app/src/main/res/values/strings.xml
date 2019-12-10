@@ -8,5 +8,10 @@
         <item>person</item>
         <item>location</item>
     </string-array>
+
+    <string-array name="imageOptions">
+        <item>move</item>
+        <item>delete</item>
+    </string-array>
     
 </resources>
