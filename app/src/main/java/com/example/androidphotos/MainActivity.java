@@ -2,6 +2,7 @@ package com.example.androidphotos;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -60,6 +61,15 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
                 openDialog();
                 adapter.notifyDataSetChanged();
                 //adapter.notifyItemInserted(albums.size());
+            }
+        });
+
+        FloatingActionButton searchFab = findViewById(R.id.fabSearch);
+        searchFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SearchActivity.class);
+                context.startActivity(intent);
             }
         });
     }
