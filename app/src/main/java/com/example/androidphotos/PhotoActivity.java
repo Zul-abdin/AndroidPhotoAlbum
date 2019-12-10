@@ -9,7 +9,9 @@ import com.example.androidphotos.Model.UserData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -86,6 +88,7 @@ public class PhotoActivity extends AppCompatActivity implements TagDialogFragmen
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: ");
         RecyclerView recyclerView = findViewById(R.id.tag_view);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -99,4 +102,17 @@ public class PhotoActivity extends AppCompatActivity implements TagDialogFragmen
     public void getTag(String tagKey, String tagValue) {
         UserData.albums.get(albumPos).getPhotos().get(photoPos).addTag(new Tag(tagKey, tagValue));
     }
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            tags.remove(viewHolder.getAdapterPosition());
+            adapter.notifyDataSetChanged();
+        }
+    };
 }

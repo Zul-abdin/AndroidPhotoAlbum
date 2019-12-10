@@ -10,8 +10,10 @@ import com.example.androidphotos.Model.UserData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -115,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
         Log.d(TAG, "initRecyclerView: ");
         RecyclerView recyclerView = findViewById(R.id.albumList);
         //AlbumRecyclerViewAdapter adapter = new AlbumRecyclerViewAdapter(albums, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -126,4 +129,17 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
         String json = JsonHelper.listToJson(UserData.albums);
         JsonHelper.jsonToFile(json, this);
     }
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            UserData.albums.remove(viewHolder.getAdapterPosition());
+            adapter.notifyDataSetChanged();
+        }
+    };
 }
