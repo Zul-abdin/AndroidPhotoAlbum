@@ -1,16 +1,25 @@
 package com.example.androidphotos;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.androidphotos.Model.Tag;
+import com.example.androidphotos.Model.UserData;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +30,7 @@ public class TagRecyclerViewAdapter extends RecyclerView.Adapter<TagRecyclerView
 
     private ArrayList<Tag> tags = new ArrayList<>();
     private Context mContext;
+    //private int
 
     public TagRecyclerViewAdapter(ArrayList<Tag> tags, Context mContext) {
         this.tags = tags;
@@ -36,9 +46,58 @@ public class TagRecyclerViewAdapter extends RecyclerView.Adapter<TagRecyclerView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called");
         holder.tagString.setText(tags.get(position).toString());
+        holder.tagParent.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setTitle("Edit Tag");
+
+                final EditText input = new EditText(mContext);
+                //input.setInputType(InputType.TYPE_CLASS_TEXT );
+                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+
+                View mview = inflater.inflate(R.layout.dialog_newtag, null);
+                final Spinner key = mview.findViewById(R.id.tagSpinner);
+                final EditText value = mview.findViewById(R.id.tagEdit);
+                //Collections.addAll(options, getResources().getStringArray(R.array.tagKeyList));
+                ArrayList<String> options = new ArrayList<>();
+                options.add("person");
+                options.add("location");
+                Log.d(TAG, "onLongClick: " + options);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,
+                        android.R.layout.simple_spinner_item,
+                        options);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                Log.d(TAG, "onLongClick: " + key);
+                key.setAdapter(adapter);
+
+                builder.setView(mview)
+                        .setTitle("Edit Tag")
+                        .setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                String tagKey = key.getSelectedItem().toString();
+                                String tagValue = value.getText().toString();
+                                //listener.getTag(tagKey, tagValue);
+                                tags.get(position).changeTag(tagKey, tagValue);
+                                //tags.get(position).addTag(new Tag(tagKey, tagValue));
+                                notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                //builder.create();
+                builder.show();
+                return true;
+            }
+        });
     }
 
     @Override
@@ -49,12 +108,12 @@ public class TagRecyclerViewAdapter extends RecyclerView.Adapter<TagRecyclerView
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView tagString;
-        RelativeLayout tagParent;
+        LinearLayout tagParent;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tagString = itemView.findViewById(R.id.tagString);
-            tagParent = itemView.findViewById(R.id.tagParent);
+            tagParent = itemView.findViewById(R.id.tagItem);
         }
     }
 
