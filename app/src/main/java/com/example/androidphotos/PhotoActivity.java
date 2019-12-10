@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,6 +57,17 @@ public class PhotoActivity extends AppCompatActivity implements TagDialogFragmen
                         .setAction("Action", null).show();
                 openDialog();
                 adapter.notifyDataSetChanged();
+            }
+        });
+
+        Button slideshow = findViewById(R.id.buttonSlideshow);
+        slideshow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SlideShowActivity.class);
+                intent.putExtra("albumPos", albumPos);
+                intent.putExtra("photoPos", photoPos);
+                context.startActivity(intent);
             }
         });
     }
