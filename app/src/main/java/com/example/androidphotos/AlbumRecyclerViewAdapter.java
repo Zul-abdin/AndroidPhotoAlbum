@@ -41,7 +41,6 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called");
-        holder.numberOfPhotos.setText(albums.get(position).photos.size()+"");
         holder.name.setText(albums.get(position).name);
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,12 +92,10 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView name;
-        TextView numberOfPhotos;
         RelativeLayout parentLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.albumName);
-            numberOfPhotos = itemView.findViewById(R.id.numberPhotos);
             parentLayout = itemView.findViewById(R.id.parent_albumlayout);
         }
     }

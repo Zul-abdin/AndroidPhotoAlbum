@@ -17,14 +17,4 @@
         android:layout_marginLeft="40dp"
         android:textSize="20sp"/>
 
-    <TextView
-        android:id="@+id/numberPhotos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Number of pictures"
-        android:layout_toRightOf="@+id/albumName"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="90dp"
-        android:textSize="20sp"/>
 </RelativeLayout>
