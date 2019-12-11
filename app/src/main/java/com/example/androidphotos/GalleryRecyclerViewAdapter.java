@@ -23,10 +23,8 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidphotos.Model.Photo;
 import com.example.androidphotos.Model.UserData;
 
-import java.util.ArrayList;
 
 public class GalleryRecyclerViewAdapter extends RecyclerView.Adapter<GalleryRecyclerViewAdapter.ViewHolder>{
 
@@ -54,8 +52,6 @@ public class GalleryRecyclerViewAdapter extends RecyclerView.Adapter<GalleryRecy
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called" + photos.get(position).getUrl());
         holder.imageName.setText(photos.get(position).getCaption());
-        //holder.image.setImageBitmap(BitmapFactory.decodeFile(photos.get(position).getUrl()));
-        //File temp = new File(photos.get(position).getUrl());
         holder.image.setImageURI(photos.get(position).getUrl());
         holder.galleryParent.setLongClickable(true);
 

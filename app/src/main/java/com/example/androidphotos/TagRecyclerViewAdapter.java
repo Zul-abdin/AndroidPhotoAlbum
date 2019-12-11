@@ -26,7 +26,6 @@ public class TagRecyclerViewAdapter extends RecyclerView.Adapter<TagRecyclerView
 
     private ArrayList<Tag> tags = new ArrayList<>();
     private Context mContext;
-    //private int
 
     public TagRecyclerViewAdapter(ArrayList<Tag> tags, Context mContext) {
         this.tags = tags;
@@ -52,13 +51,11 @@ public class TagRecyclerViewAdapter extends RecyclerView.Adapter<TagRecyclerView
                 builder.setTitle("Edit Tag");
 
                 final EditText input = new EditText(mContext);
-                //input.setInputType(InputType.TYPE_CLASS_TEXT );
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 
                 View mview = inflater.inflate(R.layout.dialog_newtag, null);
                 final Spinner key = mview.findViewById(R.id.tagSpinner);
                 final EditText value = mview.findViewById(R.id.tagEdit);
-                //Collections.addAll(options, getResources().getStringArray(R.array.tagKeyList));
                 ArrayList<String> options = new ArrayList<>();
                 options.add("person");
                 options.add("location");
@@ -89,7 +86,6 @@ public class TagRecyclerViewAdapter extends RecyclerView.Adapter<TagRecyclerView
                                 dialog.cancel();
                             }
                         });
-                //builder.create();
                 builder.show();
                 return true;
             }

@@ -111,7 +111,6 @@ public class GalleryActivity extends AppCompatActivity {
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: ");
         RecyclerView recyclerView = findViewById(R.id.gallery_view);
-        //AlbumRecyclerViewAdapter adapter = new AlbumRecyclerViewAdapter(albums, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

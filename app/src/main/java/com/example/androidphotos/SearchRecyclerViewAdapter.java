@@ -38,7 +38,6 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.imageName.setText(photos.get(position).getCaption());
         holder.image.setImageURI(photos.get(position).getUrl());
-        //holder.galleryParent.setLongClickable(true);
     }
 
     @Override

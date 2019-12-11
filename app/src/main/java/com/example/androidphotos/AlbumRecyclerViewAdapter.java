@@ -25,7 +25,6 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
 
     private ArrayList<Album> albums = new ArrayList<>();
     private Context mContext;
-    private int currentIndex = -1;
 
     public AlbumRecyclerViewAdapter(ArrayList<Album> albums, Context mContext) {
         this.albums = albums;
@@ -61,14 +60,10 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
         holder.parentLayout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-//                albums.get(position).name
-//                openDialog();
-//                currentIndex = position;
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setTitle("Rename");
 
                 final EditText input = new EditText(mContext);
-                //input.setInputType(InputType.TYPE_CLASS_TEXT );
                 builder.setView(input);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {

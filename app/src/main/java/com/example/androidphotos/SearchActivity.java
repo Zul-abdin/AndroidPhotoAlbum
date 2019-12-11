@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +21,6 @@ public class SearchActivity extends AppCompatActivity {
     private EditText location;
     private EditText person;
     private Switch logic;
-    private String logicString = "OR";
     private ArrayList<Photo> currentSearch;
     private RecyclerView recyclerView;
     private SearchRecyclerViewAdapter adapter;
@@ -38,7 +36,6 @@ public class SearchActivity extends AppCompatActivity {
         logic = findViewById(R.id.andOrSwitch);
         currentSearch = new ArrayList<>();
 
-        //currentSearch = getPhotosFromUser();
 
         adapter = new SearchRecyclerViewAdapter(currentSearch, this);
         initRecyclerView();
@@ -49,10 +46,8 @@ public class SearchActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
                     logic.setText("AND");
-//                    logicString = "AND";
                 } else {
                     logic.setText("OR");
-//                    logicString = "OR";
                 }
             }
         });
@@ -75,7 +70,6 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         if (locationTag.equals("") || personTag.equals("")){
-//            currentSearch = result;
             if(locationTag.equals("")){
                 Tag t = stringToTag(personTag, "person");
                 result = getPhotosFromTag(result,t);
@@ -88,7 +82,6 @@ public class SearchActivity extends AppCompatActivity {
                 Log.d(TAG, "search:" + result);
 
             }
-//            currentSearch = result;
             currentSearch.addAll(result);
             adapter.notifyDataSetChanged();
             return;
@@ -108,9 +101,7 @@ public class SearchActivity extends AppCompatActivity {
             result.addAll(temp);
         }
         Log.d(TAG, "search: ");
-        //currentSearch = result;
         currentSearch.addAll(result);
-        //recyclerView.smoothScrollToPosition(0);
         adapter.notifyDataSetChanged();
     }
 
@@ -138,17 +129,12 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private Tag stringToTag(String s, String name){
-//        String[] temp = s.split("=");
-//        if(temp.length != 2){
-//            return null;
-//        }
         Tag t = new Tag(name, s);
         return t;
     }
 
     private void initRecyclerView(){
         recyclerView = findViewById(R.id.searchRecyclerView);
-        //AlbumRecyclerViewAdapter adapter = new AlbumRecyclerViewAdapter(albums, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

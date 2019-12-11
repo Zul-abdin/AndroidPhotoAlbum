@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
 
     private static final String TAG = "MainActivity";
 
-    //private ArrayList<Album> albums = new ArrayList<>();
     public AlbumRecyclerViewAdapter adapter;
     private Context context = this;
 
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
             UserData.setAlbums(new ArrayList<Album>());
         }
 
-//        albums.add(new Album("TEST"));
         adapter = new AlbumRecyclerViewAdapter(UserData.albums, this);
 
         initRecyclerView();
@@ -52,11 +50,10 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Added Album", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 openDialog();
                 adapter.notifyDataSetChanged();
-                //adapter.notifyItemInserted(albums.size());
             }
         });
 
@@ -128,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements AlbumDialogFragme
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: ");
         RecyclerView recyclerView = findViewById(R.id.albumList);
-        //AlbumRecyclerViewAdapter adapter = new AlbumRecyclerViewAdapter(albums, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

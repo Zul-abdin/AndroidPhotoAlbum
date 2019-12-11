@@ -33,7 +33,6 @@ public class PhotoActivity extends AppCompatActivity implements TagDialogFragmen
     private ImageView photo;
     private TextView caption;
 
-    Intent myFileIntent;
     Context context = this;
 
     @Override
@@ -53,7 +52,7 @@ public class PhotoActivity extends AppCompatActivity implements TagDialogFragmen
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Added Tag", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 openDialog();
                 adapter.notifyDataSetChanged();
