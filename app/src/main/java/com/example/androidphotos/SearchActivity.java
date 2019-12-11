@@ -119,7 +119,8 @@ public class SearchActivity extends AppCompatActivity {
 
         for(Photo photo : photos){
             for(Tag t : photo.getTags()){
-                if(t.equals(tag)){
+                //t.equals(tag)
+                if(t.getValue().contains(tag.getValue())){
                     photosWithTag.add(photo);
                 }
             }

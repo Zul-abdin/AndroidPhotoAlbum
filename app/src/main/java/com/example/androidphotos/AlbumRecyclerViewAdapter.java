@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,7 +47,6 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: "+ albums.get(position).name);
-                Toast.makeText(mContext, albums.get(position).name, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(mContext, GalleryActivity.class);
                 intent.putExtra("photos", position);

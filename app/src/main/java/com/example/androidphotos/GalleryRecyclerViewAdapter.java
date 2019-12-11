@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.androidphotos.Model.Album;
 import com.example.androidphotos.Model.Photo;
@@ -59,7 +58,6 @@ public class GalleryRecyclerViewAdapter extends RecyclerView.Adapter<GalleryRecy
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: "+ photos.get(position).getUrl());
-                Toast.makeText(mContext, photos.get(position).getUrl().toString(), Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(mContext, PhotoActivity.class);
                 intent.putExtra("albumPos", albumPos);
